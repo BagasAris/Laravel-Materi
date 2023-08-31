@@ -20,5 +20,9 @@ class PagesController extends Controller
     {
         return view('welcome');
     }
+    public function master()
+    {
+        return view('template.master');
+    }
 }
 
