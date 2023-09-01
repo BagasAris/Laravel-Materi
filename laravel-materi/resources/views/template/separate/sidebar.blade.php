@@ -496,49 +496,49 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="../examples/lockscreen.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/examples/lockscreen.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lockscreen</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/legacy-user-menu.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/examples/legacy-user-menu.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Legacy User Menu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/language-menu.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/examples/language-menu.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Language Menu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/404.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/examples/404.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Error 404</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/500.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/examples/500.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Error 500</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/pace.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/examples/pace.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pace</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../examples/blank.html" class="nav-link active">
+                <a href="{{ asset ('AdminLTE/examples/blank.html') }}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Blank Page</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../../starter.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/starter.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Starter Page</p>
                 </a>
@@ -555,13 +555,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../search/simple.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/search/simple.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Simple Search</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../search/enhanced.html" class="nav-link">
+                <a href="{{ asset ('AdminLTE/search/enhanced.html') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Enhanced</p>
                 </a>
@@ -570,7 +570,7 @@
           </li>
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
-            <a href="../../iframe.html" class="nav-link">
+            <a href="{{ asset ('AdminLTE/iframe.html') }}" class="nav-link">
               <i class="nav-icon fas fa-ellipsis-h"></i>
               <p>Tabbed IFrame Plugin</p>
             </a>
