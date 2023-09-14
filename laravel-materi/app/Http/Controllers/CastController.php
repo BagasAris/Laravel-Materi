@@ -13,7 +13,7 @@ class CastController extends Controller
     public function index()
     {
         //
-        $cast = Db::table('casts')->get();
+        $casts = Db::table('casts')->get();
         return view('cast.index', compact('casts'));
     }
 
@@ -33,7 +33,7 @@ class CastController extends Controller
         // dd($request);
         $request->validate([
             'nama' => 'required',
-            'umur' => 'required',
+            'umur' => 'required|numeric',
             'bio' => 'required',
         ]);
 
@@ -52,6 +52,8 @@ class CastController extends Controller
     public function show(string $id)
     {
         //
+        $cast = DB::table('casts')->where('id', $id)->get();
+        return view('cast.show', compact('cast'));
     }
 
     /**
@@ -60,6 +62,8 @@ class CastController extends Controller
     public function edit(string $id)
     {
         //
+        $cast = DB::table('casts')->where('id', $id)->get();
+        return view('cast.edit', compact('cast'));
     }
 
     /**
@@ -68,6 +72,19 @@ class CastController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'nama' => 'required',
+            'umur' => 'required|numeric',
+            'bio' => 'required|min:10',
+        ]);
+
+        $query = DB::table('casts')->where('id', $id)->update([
+            'nama' => $request['nama'],
+            'umur' => $request['umur'],
+            'bio' => $request['bio'],
+        ]);
+        return redirect()->route('cast.index');
+
     }
 
     /**
@@ -76,5 +93,7 @@ class CastController extends Controller
     public function destroy(string $id)
     {
         //
+        $query = DB::table('casts')->where('id', $id)->delete();
+        return redirect()->route('cast.index');
     }
 }
