@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{{ asset ('AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset ('AdminLTE/dist/css/adminlte.min.css') }}">
+  @stack('css')
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -38,7 +39,7 @@
     @include('template.separate.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
-  @include('template.separate.conten')
+  @yield('conten')
 
         <!-- /.card-body -->
         <div class="card-footer">
@@ -70,5 +71,6 @@
 <script src="{{ asset ('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset ('AdminLTE/dist/js/adminlte.min.js') }}"></script>
+@stack('script')
 </body>
 </html>
