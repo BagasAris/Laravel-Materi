@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Cast Form</h1>
+                <h1>Genre Form</h1>
             </div>
             <div class="col-sm-2">
                 <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Cast Form</li>
+                <li class="breadcrumb-item active">Genre Form</li>
                 </ol>
             </div>
             </div>
@@ -22,7 +22,7 @@
 
     <!-- Main content -->
         <!-- form start -->
-        <form action="{{ route('cast.update', $cast[0]->id) }}" method="POST">
+        <form action="{{ route('genre.update', $genre->id) }}" method="POST">
             @csrf
             @method('PUT')
         <section class="content">
@@ -31,32 +31,17 @@
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
-                <div class="card card-info">
+                <div class="card card-warning">
                 <div class="card-header">
-                    <h3 class="card-title">Data Cast</h3>
+                    <h3 class="card-title">Data Genre</h3>
                 </div>
                 <!-- /.card-header -->
                     <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputNama">Nama</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleInputNama" value="{{ $cast[0]->nama }}">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleInputNama" value="{{ $genre->nama }}">
                     </div>
                         @error('nama')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    <div class="form-group">
-                        <label for="exampleInputUmur">Umur</label>
-                        <input type="number" class="form-control @error('umur') is-invalid @enderror" name="umur" value="{{ $cast[0]->umur }}">
-                    </div>
-                    @error('umur')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    <div class="form-group">
-                        <label for="exampleInpuBio">Bio</label>
-                        <textarea type="text" class="form-control @error('bio') is-invalid @enderror" name="bio" id="bio" cols="30" rows="10">{{ $cast[0]->bio }} 
-                        </textarea>
-                    </div>
-                        @error('bio')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -84,11 +69,11 @@
                     <h5 class="modal-title">Peringatan</h5>
                   </div>
                   <div class="modal-body">
-                    <p>Apakah Anda Yakin Akan Keluar Dari Form Edit Data Cast</p>
+                    <p>Apakah Anda Yakin Akan Keluar Dari Form Edit Data Genre</p>
                   </div>
                   <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <a href="{{ route('cast.index') }}" class="btn btn-warning">Yes</a>
+                    <a href="{{ route('genre.index') }}" class="btn btn-warning">Yes</a>
                   </div>
                 </div>
               </div>
