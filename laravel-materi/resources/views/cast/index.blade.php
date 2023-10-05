@@ -38,6 +38,7 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-hover">
+                <a href="{{ route('cast.create') }}" class="btn btn-small btn-success">Create</a>
                   <thead>
                   <tr>
                     <th>No</th>
