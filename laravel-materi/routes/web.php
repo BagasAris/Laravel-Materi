@@ -21,8 +21,9 @@ Route::GET('/', [PagesController::class, 'index']);
 Route::GET('/form', [PagesController::class, 'form'])-> name('form');
 Route::GET('/index', [PagesController::class, 'welcome'])-> name('welcome');
 Route::GET('/master', [PagesController::class, 'master']);
-Route::resource('/cast', CastController::class);
-Route::resource('/genre', GenreController::class);
+Route::resource('/cast', CastController::class)->middleware('auth');
+Route::resource('/genre', GenreController::class)->middleware('auth');
+
 Route::controller(AuthController::class)->group(function() {
     Route::get('/registration', 'register')->name('auth.register');
     Route::post('/store', 'store')->name('auth.store');

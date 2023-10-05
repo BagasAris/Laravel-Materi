@@ -42,7 +42,7 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('auth.dashboard')
-        ->withSuccess('PULU PULU');
+        ->withSuccess('Anda Telah Registrasi dan Login!');
     }
 
     //form login
@@ -52,9 +52,26 @@ class AuthController extends Controller
     }
 
     //authentication
-    public function authentication()
+    public function authentication(Request $request, Auth $auth)
     {
-        
+        //validasi form input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        //proses autentikasi
+        $credential = $request->only('email','password');
+        if ($auth::attempt($credential))
+        {
+            $request->session()->regenerate();
+            return redirect()->route('auth.dashboard');
+        }
+
+        //jika proses authentikasi gagal akan diredirect kehalaman login
+        return back()->withErrors([
+            'email' => 'Email Tidak Ditemukan',
+        ])->onlyInput('email');
     }
 
     //dashboard
@@ -67,8 +84,12 @@ class AuthController extends Controller
     }
 
     //logout
-    public function logout()
+    public function logout(Request $request, Auth $auth)
     {
+        $auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
+        return redirect()->route('auth.login');
     }
 }

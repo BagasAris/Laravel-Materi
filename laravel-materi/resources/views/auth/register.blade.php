@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Registration Page (v2)</title>
+  <title>Registration</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,12 +21,12 @@
       <a href="{{ asset('AdminLTE/index2.html') }}" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg">Silahkan Register Terlebih Dahulu</p>
 
       <form action="{{ route('auth.store') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="text" name="nama" class="form-control" placeholder="Full name">
+          <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Full name" value="{{ @old('enama') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -37,7 +37,7 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ @old('email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
