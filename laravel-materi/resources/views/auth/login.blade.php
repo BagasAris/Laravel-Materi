@@ -55,6 +55,7 @@
           <div class="d-grid gap-2 col-12 mx-auto">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
+          <p class="text-center">Apakah anda belum mempunyai akun?</p><a href="{{ route('auth.register') }}">Register</a>
           <!-- /.col -->
         </div>
       </form>

@@ -34,15 +34,27 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <form action="{{ route('auth.logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-light btn-md nav-link">
-                  Log Out &nbsp;
-                  <i class="fas fa-sign-out-alt"></i> <!-- Menggunakan ikon Logout yang benar -->
-                </button>
-
-            </form>
+              <li class="nav-item">
+                <a href="{{ route('cast.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cast</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('genre.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Genre</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <form action="{{ route('auth.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-light btn-md nav-link">
+                      Log Out &nbsp;
+                      <i class="fas fa-sign-out-alt"></i> <!-- Menggunakan ikon Logout yang benar -->
+                    </button>
+                </form>
+              </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

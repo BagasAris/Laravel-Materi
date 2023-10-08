@@ -35,15 +35,15 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputNama">Nama</label>
-                    <input type="text" class="form-control" name="nama" id="exampleInputNama" value="{{ $cast[0]->nama }}" disabled>
+                    <input type="text" class="form-control" name="nama" id="exampleInputNama" value="{{ $cast->nama }}" disabled>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputUmur">Umur</label>
-                    <input type="number" class="form-control" name="umur" value="{{ $cast[0]->umur }}" disabled>
+                    <input type="number" class="form-control" name="umur" value="{{ $cast->umur }}" disabled>
                   </div>
                   <div class="form-group">
                     <label for="exampleInpuBio">Bio</label>
-                    <textarea type="text" class="form-control" name="bio" id="bio" cols="30" rows="10" disabled>{{ $cast[0]->bio }} 
+                    <textarea type="text" class="form-control" name="bio" id="bio" cols="30" rows="10" disabled>{{ $cast->bio }} 
                     </textarea>
                   </div>
                 </div>
@@ -69,11 +69,11 @@
                     <h5 class="modal-title">Peringatan</h5>
                   </div>
                   <div class="modal-body">
-                    <p>Apakah Anda Yakin Akan Keluar Dari Form Detail Data Genre</p>
+                    <p>Apakah Anda Yakin Akan Keluar Dari Form Detail Data Cast</p>
                   </div>
                   <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <a href="{{ route('genre.index') }}" class="btn btn-info">Yes</a>
+                    <a href="{{ route('cast.index') }}" class="btn btn-info">Yes</a>
                   </div>
                 </div>
               </div>

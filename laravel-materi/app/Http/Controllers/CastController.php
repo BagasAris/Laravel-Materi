@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Cast;
 
 class CastController extends Controller
 {
@@ -13,7 +13,7 @@ class CastController extends Controller
     public function index()
     {
         //
-        $casts = Db::table('casts')->get();
+        $casts = Cast::all();
         return view('cast.index', compact('casts'));
     }
 
@@ -32,16 +32,18 @@ class CastController extends Controller
     {
         // dd($request);
         $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|unique:casts,nama|min:3',
             'umur' => 'required|numeric',
-            'bio' => 'required',
+            'bio' => 'required|min:10'
+        ],[
+                'nama.required' => 'nama wajib diisi, tidak boleh kosong ya cuy',
+                'nama.unique' => 'nama sudah terdaftar, silahkan coba dengan nama lain',
+                'nama.min' => 'nama minimal 3 huruf',
+                'umur.required' => 'umur wajib diisi',
+                'bio.required' => 'bio wajib diisi',
+                'bio.min' => 'bio minimal 10 huruf',
         ]);
-
-        $query = DB::table('casts')->insert([
-            'nama' => $request['nama'],
-            'umur' => $request['umur'],
-            'bio' => $request['bio'],
-        ]);
+        Cast::create($request->all());
 
         return redirect()->route('cast.index');
     }
@@ -49,40 +51,40 @@ class CastController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Cast $cast)
     {
         //
-        $cast = DB::table('casts')->where('id', $id)->get();
         return view('cast.show', compact('cast'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Cast $cast)
     {
         //
-        $cast = DB::table('casts')->where('id', $id)->get();
         return view('cast.edit', compact('cast'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Cast $cast)
     {
         //
         $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|unique:casts,nama|min:3',
             'umur' => 'required|numeric',
-            'bio' => 'required|min:10',
+            'bio' => 'required|min:10'
+        ],[
+                'nama.required' => 'nama wajib diisi, tidak boleh kosong ya cuy',
+                'nama.unique' => 'nama sudah terdaftar, silahkan coba dengan nama lain',
+                'nama.min' => 'nama minimal 3 huruf',
+                'umur.required' => 'umur wajib diisi',
+                'bio.required' => 'bio wajib diisi',
+                'bio.min' => 'bio minimal 10 huruf',
         ]);
-
-        $query = DB::table('casts')->where('id', $id)->update([
-            'nama' => $request['nama'],
-            'umur' => $request['umur'],
-            'bio' => $request['bio'],
-        ]);
+        $cast->update($request->all());
         return redirect()->route('cast.index');
 
     }
@@ -90,10 +92,10 @@ class CastController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cast $cast)
     {
         //
-        $query = DB::table('casts')->where('id', $id)->delete();
+        $cast->delete();
         return redirect()->route('cast.index');
     }
 }

@@ -22,7 +22,7 @@
 
     <!-- Main content -->
         <!-- form start -->
-        <form action="{{ route('cast.update', $cast[0]->id) }}" method="POST">
+        <form action="{{ route('cast.update', $cast->id) }}" method="POST">
             @csrf
             @method('PUT')
         <section class="content">
@@ -31,7 +31,7 @@
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
-                <div class="card card-info">
+                <div class="card card-warning">
                 <div class="card-header">
                     <h3 class="card-title">Data Cast</h3>
                 </div>
@@ -39,21 +39,21 @@
                     <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputNama">Nama</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleInputNama" value="{{ $cast[0]->nama }}">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleInputNama" value="{{ $cast->nama }}">
                     </div>
                         @error('nama')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     <div class="form-group">
                         <label for="exampleInputUmur">Umur</label>
-                        <input type="number" class="form-control @error('umur') is-invalid @enderror" name="umur" value="{{ $cast[0]->umur }}">
+                        <input type="number" class="form-control @error('umur') is-invalid @enderror" name="umur" value="{{ $cast->umur }}">
                     </div>
                     @error('umur')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     <div class="form-group">
                         <label for="exampleInpuBio">Bio</label>
-                        <textarea type="text" class="form-control @error('bio') is-invalid @enderror" name="bio" id="bio" cols="30" rows="10">{{ $cast[0]->bio }} 
+                        <textarea type="text" class="form-control @error('bio') is-invalid @enderror" name="bio" id="bio" cols="30" rows="10">{{ $cast->bio }} 
                         </textarea>
                     </div>
                         @error('bio')

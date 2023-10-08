@@ -49,16 +49,16 @@
                   </tr>
                   </thead>
                   <tbody>
-                    @foreach ($casts as $key => $value)
+                    @foreach ($casts as $key => $cast)
                   <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $value->nama }}</td>
-                    <td>{{ $value->umur }}</td>
-                    <td>{{ $value->bio }}</td>
+                    <td>{{ $cast->nama }}</td>
+                    <td>{{ $cast->umur }}</td>
+                    <td>{{ $cast->bio }}</td>
                     <td class="d-flex" style="gap:10px">
-                      <a href="{{ route('cast.show', $value->id) }}" class="btn btn-small btn-info">Detail</a>
-                      <a href="{{ route('cast.edit', $value->id) }}" class="btn btn-small btn-warning">Edit</a>
-                      <form action="{{ route('cast.destroy', $value->id) }}" method="POST">
+                      <a href="{{ route('cast.show', $cast->id) }}" class="btn btn-small btn-info">Detail</a>
+                      <a href="{{ route('cast.edit', $cast->id) }}" class="btn btn-small btn-warning">Edit</a>
+                      <form action="{{ route('cast.destroy', $cast->id) }}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button type="sumbit" class="btn btn-small btn-danger">hapus</button>

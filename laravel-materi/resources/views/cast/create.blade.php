@@ -27,7 +27,7 @@
           <!-- left column -->
           <div class="col-md-12">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Data Cast</h3>
               </div>
@@ -38,21 +38,30 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputNama">Nama</label>
-                    <input type="text" class="form-control" name="nama" id="exampleInputNama" placeholder="Enter nama">
+                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleInputNama" placeholder="Enter nama"value="{{ old('nama') }}">
                   </div>
+                  @error('nama')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                   <div class="form-group">
                     <label for="exampleInputUmur">Umur</label>
-                    <input type="number" class="form-control" name="umur" value="umur" id="exampleInputUmur" placeholder="Umur">
+                    <input type="number" class="form-control @error('umur') is-invalid @enderror" name="umur" value="umur" id="exampleInputUmur" placeholder="Umur" value="{{ old('umur') }}">    
                   </div>
+                  @error('umur')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                   <div class="form-group">
                     <label for="exampleInpuBio">Bio</label>
-                    <textarea type="text" class="form-control" name="bio" id="bio" cols="30" rows="10" placeholder="Bio"></textarea>
+                    <textarea type="text" class="form-control @error('bio') is-invalid @enderror" name="bio" id="bio" cols="30" rows="10" placeholder="Bio" value="{{ old('bio') }}"></textarea>
                   </div>
+                  @error('bio')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
                     <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Back</a>
                 </div>
                 </form>

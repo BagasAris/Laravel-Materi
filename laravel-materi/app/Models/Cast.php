@@ -14,5 +14,6 @@ class Cast extends Model
         'id',
         'nama',
         'umur',
+        'bio',
     ];
 }
