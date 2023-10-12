@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Genre extends Model
 {
     use HasFactory;
@@ -14,6 +15,6 @@ class Genre extends Model
     ];
 
     public function film() {
-        return $this->belongsTo(app/Models/Film);
+        return $this->belongsTo('app\Models\Film');
     }
 }

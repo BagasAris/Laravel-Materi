@@ -37,7 +37,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputNama">Nama</label>
-                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleInputNama" placeholder="Enter nama" value="{{ old('nama') }}">
+                    <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="exampleInputNama" placeholder="Enter genre" value="{{ old('nama') }}">
                   </div>
                   @error('nama')
                             <div class="alert alert-danger">{{ $message }}</div>

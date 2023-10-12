@@ -35,15 +35,27 @@
           <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
               <li class="nav-item">
-                <a href="{{ route('cast.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Cast</p>
+                <a href="{{ route('auth.dashboard') }}" class="nav-link @if(Request::segment(1) == 'dashboard') active @endif">
+                <i class="fas fa-th-large nav-icon"></i>
+                  <p>Dashboard</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('genre.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="{{ route('film.index') }}" class="nav-link @if(Request::segment(1) == 'film') active @endif">
+                <i class="fas fa-film nav-icon"></i>
+                  <p>Film</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('genre.index') }}" class="nav-link @if(Request::segment(1) == 'genre') active @endif">
+                  <i class="fas fa-book nav-icon"></i>
                   <p>Genre</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('cast.index') }}" class="nav-link @if(Request::segment(1) == 'cast') active @endif">
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Cast</p>
                 </a>
               </li>
               <li class="nav-item">

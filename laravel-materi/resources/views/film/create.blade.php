@@ -80,6 +80,7 @@
                     
                     <div class="card-footer">
                     <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
                         <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Back</a>
                     </div>
                     </form>
@@ -100,11 +101,11 @@
                         <h5 class="modal-title">Peringatan</h5>
                     </div>
                     <div class="modal-body">
-                        <p>Apakah Anda Yakin Akan Keluar Dari Form Create Data Cast</p>
+                        <p>Apakah Anda Yakin Akan Keluar Dari Form Create Data Film</p>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                        <a href="{{ route('cast.index') }}" class="btn btn-success">Yes</a>
+                        <a href="{{ route('film.index') }}" class="btn btn-success">Yes</a>
                     </div>
                     </div>
                 </div>
