@@ -41,7 +41,7 @@
                   </div>
                   @error('nama')
                             <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                  @enderror
                 </div>
                 <!-- /.card-body -->
 

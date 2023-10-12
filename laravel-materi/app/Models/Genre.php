@@ -12,4 +12,8 @@ class Genre extends Model
     protected $fillable = [
         'nama',
     ];
+
+    public function film() {
+        return $this->belongsTo(app/Models/Film);
+    }
 }
