@@ -80,10 +80,15 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                <strong><i class="fas fa-book mr-1"></i> Cast</strong>
 
                 <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
+                @forelse ($film->peran()->get() as $peran)
+                  {{ $peran->cast[0]->nama }} ({{ $peran->nama}})
+
+                  @empty
+                  tdk ada data cast
+                  @endforelse
                 </p>
 
                 <hr>

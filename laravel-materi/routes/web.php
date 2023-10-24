@@ -4,6 +4,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\PeranController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::GET('/master', [PagesController::class, 'master']);
 Route::resource('/cast', CastController::class)->middleware('auth');
 Route::resource('/genre', GenreController::class)->middleware('auth');
 Route::resource('/film', FilmController::class)->middleware('auth');
+Route::resource('/peran', PeranController::class)->middleware('auth');
 
 Route::controller(AuthController::class)->group(function() {
     Route::get('/registration', 'register')->name('auth.register');

@@ -60,9 +60,11 @@ class FilmController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Film $film)
+    public function show($id)
     {
         //
+        $film = Film::findOrFail($id); // Menggantikan $id dengan nilai id yang benar
+        $genre = Genre::find($film->genre_id); // Mengambil genre yang terkait dengan film
         return view('film.show', compact('film'));
     }
 

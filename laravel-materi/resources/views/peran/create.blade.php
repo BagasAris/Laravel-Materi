@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Film Form</h1>
+                <h1>Peran Form</h1>
             </div>
             <div class="col-sm-2">
                 <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Film Form</li>
+                <li class="breadcrumb-item active">Peran Form</li>
                 </ol>
             </div>
             </div>
@@ -23,56 +23,47 @@
         <section class="content">
         <div class="container-fluid">
             <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-                <!-- general form elements -->
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
                 <div class="card card-success">
                 <div class="card-header">
-                    <h3 class="card-title">Data Film</h3>
+                    <h3 class="card-title">Data Peran</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ route('film.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('peran.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputJudul">Judul</label>
-                            <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" id="exampleInputJudul" placeholder="judul"value="{{ old('judul') }}">
+                            <label for="exampleInpuNama">Peran</label>
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" cols="30" rows="10" placeholder="nama" value="{{ old('nama') }}"></input>
                         </div>
-                        @error('judul')
+                        @error('nama')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="form-group">
-                            <label>Genre</label>
-                            <select name="genre" id="genre" class="form-control">Genre
+                            <label>Nama Film</label>
+                            <select name="film" id="film" class="form-control">Film
                                 <option disable>--Pilih Salah Satu--</option>
-                                    @foreach ($genres as $key => $value)
+                                    @foreach ($films as $key => $value)
+                                        <option value="{{ $value->id }}">{{ $value->judul }}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        @error('film')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="form-group">
+                            <label>Cast</label>
+                            <select name="cast" id="cast" class="form-control">Cast
+                                <option disable>--Pilih Salah Satu--</option>
+                                    @foreach ($casts as $key => $value)
                                         <option value="{{ $value->id }}">{{ $value->nama }}</option>
                                     @endforeach
                             </select>
                         </div>
-                        @error('genre')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="form-group">
-                            <label for="exampleInpuRingkasan">Ringkasan</label>
-                            <textarea type="text" class="form-control @error('ringkasan') is-invalid @enderror" name="ringkasan" id="ringkasan" cols="30" rows="10" placeholder="ringkasan" value="{{ old('ringkasan') }}"></textarea>
-                        </div>
-                        @error('ringkasan')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="form-group">
-                            <label for="exampleInputTahun">Tahun</label>
-                            <input type="number" class="form-control @error('tahun') is-invalid @enderror" name="tahun" value="tahun" id="exampleInputTahun" placeholder="tahun" value="{{ old('tahun') }}">    
-                        </div>
-                        @error('tahun')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="form-group">
-                            <label for="exampleInpuPoster">Poster</label>
-                            <input type="file" class="form-control @error('poster') is-invalid @enderror" name="poster" id="poster" cols="30" rows="10" placeholder="poster" value="{{ old('poster') }}"></input>
-                        </div>
-                        @error('poster')
+                        @error('cast')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

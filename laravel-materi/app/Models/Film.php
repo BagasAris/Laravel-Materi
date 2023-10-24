@@ -20,4 +20,15 @@ class Film extends Model
     public function genre() {
         return $this->hasMany('App\Models\Genre', 'id', 'genre_id');
     }
+
+    public function peran()
+    {
+        return $this->hasMany(Peran::class);
+    }
+    
+
+    public function cast()
+    {
+        return $this->belongsToMany(Cast::class, 'perans', 'film_id', 'cast_id');
+    }
 }
