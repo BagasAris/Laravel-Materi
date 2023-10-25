@@ -1,44 +1,8 @@
 @extends('template.master')
 
 @section('conten')
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Film</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/adminlte.min.css') }}">
-</head>
-
-  
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Film</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Film</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
     <!-- Main content -->
+  <div class="content-wrapper">
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -53,7 +17,8 @@
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center" name="nama">{{ $film->judul }}</h3>
+                <h3 class="profile-username text-center">{{ $film->judul }}</h3>
+
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
@@ -62,12 +27,9 @@
                   <li class="list-group-item">
                     <b>Tahun</b> <a class="float-right">{{ $film->tahun }}</a>
                   </li>
-                  <li class="list-group-item">
-                    <b>Ringkasan</b> <a class="float-right">{{ $film->ringkasan }}</a>
-                  </li>
                 </ul>
 
-                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                <a href="{{ route('kritik.create', ['id' => $film]) }}" class="btn btn-primary btn-block"><b>Add Kritik</b></a>
               </div>
               <!-- /.card-body -->
             </div>
@@ -76,18 +38,17 @@
             <!-- About Me Box -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">About Me</h3>
+                <h3 class="card-title">Ringkasan</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Cast</strong>
+                <strong><i class="fas fa-book mr-1"></i>Cast</strong>
 
                 <p class="text-muted">
-                @forelse ($film->peran()->get() as $peran)
-                  {{ $peran->cast[0]->nama }} ({{ $peran->nama}})
-
+                  @forelse ($film->peran()->get() as $peran)
+                    {{ $peran->cast[0]->nama }} ({{ $peran->nama}})
                   @empty
-                  tdk ada data cast
+                    Tidak Ada Data Cast
                   @endforelse
                 </p>
 
@@ -133,22 +94,25 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
                     <!-- Post -->
+                    @foreach ($film->kritik as $kritik)
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                        <img class="img-circle img-bordered-sm" src="{{ asset('adminlte/dist/img/user1-128x128.jpg')}}" alt="user image">
                         <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
+                          <a href="#">@foreach ($kritik->user as $user)
+                            {{ $user->name}}
+                          @endforeach</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
                         </span>
                         <span class="description">Shared publicly - 7:30 PM today</span>
                       </div>
                       <!-- /.user-block -->
                       <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
+                        {{-- @forelse ($film->kritik as $kritik) --}}
+                          {{ $kritik->content }}
+                        {{-- @empty
+                          Belum Ada Kritik Yang Tersedia
+                        @endforelse --}}
                       </p>
 
                       <p>
@@ -163,12 +127,13 @@
 
                       <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
                     </div>
+                    @endforeach
                     <!-- /.post -->
 
                     <!-- Post -->
                     <div class="post clearfix">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                        <img class="img-circle img-bordered-sm" src="{{ asset('adminlte/dist/img/user7-128x128.jpg')}}" alt="User Image">
                         <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -198,7 +163,7 @@
                     <!-- Post -->
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+                        <img class="img-circle img-bordered-sm" src="{{ asset('adminlte/dist/img/user6-128x128.jpg')}}" alt="User Image">
                         <span class="username">
                           <a href="#">Adam Jones</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -208,19 +173,19 @@
                       <!-- /.user-block -->
                       <div class="row mb-3">
                         <div class="col-sm-6">
-                          <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
+                          <img class="img-fluid" src="{{ asset('adminlte/dist/img/photo1.png')}}" alt="Photo">
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
                           <div class="row">
                             <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Photo">
-                              <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Photo">
+                              <img class="img-fluid mb-3" src="{{ asset('adminlte/dist/img/photo2.png')}}" alt="Photo">
+                              <img class="img-fluid" src="{{ asset('adminlte/dist/img/photo3.jpg')}}" alt="Photo">
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Photo">
-                              <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
+                              <img class="img-fluid mb-3" src="{{ asset('adminlte/dist/img/photo4.jpg')}}" alt="Photo">
+                              <img class="img-fluid" src="{{ asset('adminlte/dist/img/photo1.png')}}" alt="Photo">
                             </div>
                             <!-- /.col -->
                           </div>
@@ -401,27 +366,5 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="{{ asset('AdminLTE/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('AdminLTE/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
-</body>
-</html>
-
 @endsection

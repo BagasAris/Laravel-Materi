@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Kritik;
+use App\Models\User;
 use App\Models\Peran;
-use App\Models\Cast;
 use Illuminate\Http\Request;
 
-class PeranController extends Controller
+class KritikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +21,12 @@ class PeranController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Cast $cast, Film $film, $id)
+    public function create(User $user, Film $film, $id)
     {
         //
-        $casts      =   $cast->all();
+        $users      =   $user->all();
         $datafilm   =   $film->where('id', $id)->get();
-        return view("peran.create", compact('casts', 'datafilm'));
+        return view("kritik.create", compact('users', 'datafilm'));
     }
 
     /**
@@ -34,24 +35,25 @@ class PeranController extends Controller
     public function store(Request $request, Peran $peran, $id)
     {
         //
-        $request -> validate([
-            'cast_id'   =>  'required',
-            'peran' =>  'required'
+        $request->validate([
+            'content'   => 'required',
+            'point'     => 'required',
         ]);
 
-        $peran::create([
-            'cast_id'   => $request ['cast_id'],
+        Kritik::create([
+            'user_id'   => $request['user_id'],
             'film_id'   => $request['film_id'],
-            'nama'      => $request['peran'],
+            'content'   => $request['content'],
+            'point'     => $request['point']
         ]);
 
-        return redirect()->route('film.show', $id);
+        return redirect()->route('film.show', $id);  
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Peran $peran)
+    public function show(Kritik $kritik)
     {
         //
     }
@@ -59,7 +61,7 @@ class PeranController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Peran $peran)
+    public function edit(Kritik $kritik)
     {
         //
     }
@@ -67,7 +69,7 @@ class PeranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Peran $peran)
+    public function update(Request $request, Kritik $kritik)
     {
         //
     }
@@ -75,7 +77,7 @@ class PeranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Peran $peran)
+    public function destroy(Kritik $kritik)
     {
         //
     }

@@ -59,12 +59,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('peran.index') }}" class="nav-link @if(Request::segment(1) == 'peran') active @endif">
-                  <i class="fas fa-key nav-icon"></i>
-                  <p>Peran</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <form action="{{ route('auth.logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-light btn-md nav-link">

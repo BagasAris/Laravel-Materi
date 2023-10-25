@@ -17,18 +17,28 @@ class Film extends Model
         'genre_id',
     ];
 
-    public function genre() {
+    public function genre() 
+    {
         return $this->hasMany('App\Models\Genre', 'id', 'genre_id');
+    }
+
+    public function cast()
+    {
+        return $this->belongsToMany(Cast::class,'perans');
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'kritiks');
     }
 
     public function peran()
     {
         return $this->hasMany(Peran::class);
     }
-    
 
-    public function cast()
+    public function kritik()
     {
-        return $this->belongsToMany(Cast::class, 'perans', 'film_id', 'cast_id');
+        return $this->hasMany(Kritik::class);
     }
 }
