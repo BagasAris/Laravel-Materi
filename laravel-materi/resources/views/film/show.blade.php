@@ -48,7 +48,7 @@
                   @forelse ($film->peran()->get() as $peran)
                     {{ $peran->cast[0]->nama }} ({{ $peran->nama}})
                   @empty
-                    Tidak Ada Data Cast
+                    Tidak Ada Data Cast 
                   @endforelse
                 </p>
 

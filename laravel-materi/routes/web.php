@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::GET('/', [PagesController::class, 'index']);
 Route::GET('/form', [PagesController::class, 'form'])-> name('form');
 Route::GET('/index', [PagesController::class, 'welcome'])-> name('welcome');
+Route::GET('/profile', [AuthController::class, 'profile'])-> name('auth.profile');
 Route::GET('/master', [PagesController::class, 'master']);
 Route::resource('/cast', CastController::class)->middleware('auth');
 Route::resource('/genre', GenreController::class)->middleware('auth');

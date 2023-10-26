@@ -34,7 +34,7 @@
           </div>
         </div>
         @error('nama')
-            <div class="alert alert-danger">{{ $message }}</div>
+        <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <div class="input-group mb-3">
           <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ @old('email') }}">
@@ -69,26 +69,48 @@
         @error('confirm')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
+        <div class="input-group mb-3">
+            <input type="number" name="umur" class="form-control" placeholder="Umur">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-child"></span>
+              </div>
+            </div>
+          </div>
+          @error('umur')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+          <div class="input-group mb-3">
+            <textarea type="password" name="bio" class="form-control" placeholder="Bio"></textarea>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-child"></span>
+              </div>
+            </div>
+          </div>
+          @error('bio')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+          <div class="input-group mb-3">
+            <textarea type="password" name="alamat" class="form-control" placeholder="Alamat"></textarea>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-map-marker-alt"></span>
+              </div>
+            </div>
+          </div>
+          @error('alamat')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
           <!-- /.col -->
-          <div class="col-4">
+          <div class="col-4 d-grid gap-2 col-12 mx-auto">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
           <!-- /.col -->
         </div>
+        <a href="{{ route('auth.login') }}" class="text-center">I already have a membership</a>
       </form>
 
-      <div class="social-auth-links text-center">
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i>
-          Sign up using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i>
-          Sign up using Google+
-        </a>
-      </div>
-
-      <a href="{{ route('auth.login') }}" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

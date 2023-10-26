@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except([
-            'logout', 'dashboard'
+            'logout', 'dashboard', 'profile'
         ]);
     }
 
@@ -23,19 +24,33 @@ class AuthController extends Controller
     }
 
     //store register
-    public function store(Request $request, User $user, Auth $auth)
+    public function store(Request $request, User $user, Auth $auth, Profile $profile)
     {
         $request->validate([
             'nama' => 'required|string|max:250',
             'email' => 'required|email|max:250|unique:users,email',
-            'password' => 'required|max:8'
+            'password' => 'required|max:8',
+            'umur' => 'required',
+            'bio' => 'required|min:10',
+            'alamat' => 'required|min:10',
         ]);
 
-        User::create([
-            'name' => $request->nama,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        // User::create([
+        //     'name' => $request->nama,
+        //     'email' => $request->email,
+        //     'password' => Hash::make($request->password)
+        // ]);
+
+            $user->name = $request->nama;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+            
+            $profile->bio = $request->bio;
+            $profile->alamat = $request->alamat;
+            $profile->umur = $request->umur;
+            $profile->user_id = $user->id;
+            $profile->save();
 
         $credential = $request->only('email','password');
         $auth::attempt($credential);
@@ -91,5 +106,11 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('auth.login');
+    }
+
+    public function profile(User $user, Profile $profiles)
+    {
+        $profiles = Profile::all();
+        return view('auth.profile', compact('user', profiles));
     }
 }

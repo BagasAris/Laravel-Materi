@@ -46,7 +46,7 @@
                     <input type="hidden" value="{{$datafilm[0]->id}}" name="film_id">
                     <div class="form-group">
                         <label for="content">Komentar</label>
-                        <input type="text" name="content" id="content" class="form-control @error('content') is-invalid @enderror" placeholder="Beri komentar" required>
+                        <textarea type="text area" name="content" id="content" class="form-control @error('content') is-invalid @enderror" placeholder="Beri komentar" required></textarea>
                         @error('content')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror 
