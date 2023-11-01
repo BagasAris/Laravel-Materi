@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
 use App\Models\Peran;
+use App\Models\Film;
 use App\Models\Cast;
+
 use Illuminate\Http\Request;
 
 class PeranController extends Controller
@@ -23,9 +24,9 @@ class PeranController extends Controller
     public function create(Cast $cast, Film $film, $id)
     {
         //
-        $casts      =   $cast->all();
-        $datafilm   =   $film->where('id', $id)->get();
-        return view("peran.create", compact('casts', 'datafilm'));
+        $casts = $cast->all();
+        $datafilm = $film->where('id', $id)->get();
+        return view('peran.create', compact('casts', 'datafilm'));
     }
 
     /**
@@ -34,15 +35,15 @@ class PeranController extends Controller
     public function store(Request $request, Peran $peran, $id)
     {
         //
-        $request -> validate([
-            'cast_id'   =>  'required',
-            'peran' =>  'required'
+        $request->validate([
+            'cast_id'   => 'required',
+            'peran'     => 'required'
         ]);
 
         $peran::create([
-            'cast_id'   => $request ['cast_id'],
+            'cast_id'   => $request['cast_id'],
             'film_id'   => $request['film_id'],
-            'nama'      => $request['peran'],
+            'nama'     => $request['peran'],
         ]);
 
         return redirect()->route('film.show', $id);

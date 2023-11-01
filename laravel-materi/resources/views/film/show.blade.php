@@ -48,7 +48,7 @@
                   @forelse ($film->peran()->get() as $peran)
                     {{ $peran->cast[0]->nama }} ({{ $peran->nama}})
                   @empty
-                    Tidak Ada Data Cast 
+                    Tidak Ada Data Cast <a href="{{ route('peran.create') }}"><button class="btn btn-primary">Add Cast</button></a> 
                   @endforelse
                 </p>
 

@@ -19,11 +19,11 @@ class Cast extends Model
 
     public function film()
     {
-        return $this->hasMany('App\Models\Genre','id', 'genre_id');
+        return $this->belongsToMany(Film::class, 'perans');
     }
 
     public function peran()
     {
-        return $this->belongsToMany('app\Models\Peran');
+        return $this->hasMany(Peran::class);
     }
 }

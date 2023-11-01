@@ -4,101 +4,92 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Profile;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class AuthController extends Controller
 {
     public function __construct()
     {
         $this->middleware('guest')->except([
-            'logout', 'dashboard', 'profile'
+            'logout', 'dashboard'
         ]);
     }
-
-    //form register
-    public function register(Request $request)
+    // form register
+    public function register()
     {
         return view('auth.register');
     }
-
-    //store register
+    // store register
     public function store(Request $request, User $user, Auth $auth, Profile $profile)
     {
         $request->validate([
-            'nama' => 'required|string|max:250',
-            'email' => 'required|email|max:250|unique:users,email',
-            'password' => 'required|max:8',
-            'umur' => 'required',
-            'bio' => 'required|min:10',
-            'alamat' => 'required|min:10',
+            'nama'      => 'required|string|max:250',
+            'email'     => 'required|email|max:250|unique:users,email',
+            'password'  => 'required|min:8',
+            'umur'      => 'required',
+            'bio'       => 'required|min:10',
+            'alamat'    => 'required|min:10'
         ]);
+        // save data profile
+        $profile->umur      = $request->umur;
+        $profile->bio       = $request->bio;
+        $profile->alamat    = $request->alamat;
+        $profile->save();
+        // save data user
+        $user->name         = $request->nama;
+        $user->email        = $request->email;
+        $user->password     = Hash::make($request->password);
+        $user->profile_id   = $profile->id;
+        $user->save();
 
-        // User::create([
-        //     'name' => $request->nama,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password)
-        // ]);
-
-            $user->name = $request->nama;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->save();
-            
-            $profile->bio = $request->bio;
-            $profile->alamat = $request->alamat;
-            $profile->umur = $request->umur;
-            $profile->user_id = $user->id;
-            $profile->save();
-
-        $credential = $request->only('email','password');
+        $credential = $request->only('email', 'password');
         $auth::attempt($credential);
         $request->session()->regenerate();
 
-        return redirect()->route('auth.dashboard')
-        ->withSuccess('Anda Telah Registrasi dan Login!');
+        return redirect()->route('auth.dashboard')->withSuccess('Anda telah registrasi dan login.!');
     }
-
-    //form login
+    // form login
     public function login()
     {
         return view('auth.login');
     }
-
-    //authentication
+    // authentication
     public function authentication(Request $request, Auth $auth)
     {
-        //validasi form input
+        // validasi form input
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'email'     => 'required|email',
+            'password'  => 'required'
         ]);
-
-        //proses autentikasi
-        $credential = $request->only('email','password');
+        
+        // proses authentikasi
+        $credential = $request->only('email', 'password');
         if ($auth::attempt($credential))
         {
             $request->session()->regenerate();
             return redirect()->route('auth.dashboard');
         }
-
-        //jika proses authentikasi gagal akan diredirect kehalaman login
+        // jika proses authentikasi gagal maka akan di redirect ke halaman login
         return back()->withErrors([
-            'email' => 'Email Tidak Ditemukan',
+            'email' => 'Email atau password tidak ditemukan',
         ])->onlyInput('email');
-    }
 
-    //dashboard
+    }
+    // dashboard
     public function dashboard()
     {
-        if(Auth::check()){
+        if(Auth::check())
+        {
             return view('auth.dashboard');
         }
+
         return redirect()->route('auth.login');
     }
-
-    //logout
+    // logout
     public function logout(Request $request, Auth $auth)
     {
         $auth::logout();
@@ -108,9 +99,4 @@ class AuthController extends Controller
         return redirect()->route('auth.login');
     }
 
-    public function profile(User $user, Profile $profiles)
-    {
-        $profiles = Profile::all();
-        return view('auth.profile', compact('user', profiles));
-    }
 }

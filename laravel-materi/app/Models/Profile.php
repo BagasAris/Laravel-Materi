@@ -15,10 +15,10 @@ class Profile extends Model
         'umur', 
         'bio',
         'alamat',
-        'user_id',
-    ] ;
-    public function user() 
+    ];
+
+    public function user()
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->belongsTo(User::class);
     }
 }

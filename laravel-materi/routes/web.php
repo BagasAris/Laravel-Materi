@@ -7,6 +7,7 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\PeranController;
 use App\Http\Controllers\KritikController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfilesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,8 @@ Route::controller(AuthController::class)->group(function() {
     Route::get('/dashboard', 'dashboard')->name('auth.dashboard');
     Route::post('/logout', 'logout')->name('auth.logout');
 });
+
+Route::get('/profile/{user}', [ProfilesController::class, 'show'])->name('user.profile')->middleware('auth');
 
 Route::get('/film/{id}/peran/create', [PeranController::class,'create'])->name('peran.create');
 Route::post('film/{id}/peran', [PeranController::class, 'store'])->name('peran.store');
